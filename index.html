@@ -18,19 +18,64 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 var data_text_object = document.getElementById('data_input');
 var data_text_string = data_text_object.innerHTML;
-var data_text_array = data_text_string.split(" "); 
+var word_collection_object = data_text_string.split(" "); 
 
-
+var frequency_text_collection_object = scrambler(word_collection_object);
+	console.dir(frequency_text_collection_object);
+/*
 var c = document.getElementById("text_display");
 var ctx = c.getContext("2d");
-for(var i=0; i<data_text_array.length; i++)
+
+for(var i=0; i<word_collection_object.length; i++)
 {
-	var word_string = data_text_array[i];
+	var word_string = word_collection_object[i];
 	var y_coordinate = (i +1) * 30;
 	ctx.font = "30px Arial";
 	ctx.fillText(i + word_string,10,y_coordinate);
 	//document.write(i + word_string);
 }
+*/
+
+//for(var i=0; i<frequency_text_collection_object.length; i++)
+for (prop in frequency_text_collection_object)
+{
+	//var word_string = window.atob(frequency_text_collection_object[i].getproperty);
+	document.write(prop);
+	document.write(frequency_text_collection_object[prop]);
+	document.write('<br>');
+	//alert(frequency_text_collection_object[prop]);
+}
+
+function scrambler(data_text_collection_object)
+{
+	var frequency_text_collection_object = Object();
+	for(var i=0; i<data_text_collection_object.length; i++)
+	{
+		var word_string = data_text_collection_object[i];
+		//var word_b64_string = window.btoa(word_string);
+
+/*
+		if(frequency_text_collection_object.hasOwnProperty(word_b64_string))
+		{
+			frequency_text_collection_object[word_b64_string]++;
+		}
+		else
+		{
+			frequency_text_collection_object[word_b64_string] = 1;
+		}
+*/
+		if(frequency_text_collection_object.hasOwnProperty(word_string))
+		{
+			frequency_text_collection_object[word_string]++;
+		}
+		else
+		{
+			frequency_text_collection_object[word_string] = 1;
+		}
+	}
+	return frequency_text_collection_object;
+}
+
 </script>
 
 </body>
